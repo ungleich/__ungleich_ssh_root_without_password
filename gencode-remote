@@ -1,0 +1,25 @@
+# Restart sshd if its config is changed
+
+os="$(cat "$__global/explorer/os")"
+
+case "$os" in
+    centos|redhat)
+        restart="/etc/init.d/sshd restart"
+    ;;
+    debian|ubuntu)
+        restart="/etc/init.d/ssh restart"
+    ;;
+    *)
+        cat << eof >&2
+Unsupported os $os.
+If you would like to have this type running on $os,
+you can either develop the changes and send a pull
+request or ask for a quote at www.ungleich.ch
+eof
+
+esac
+
+if grep -q "^__key_value/PermitRootLogin" "$__messages_in"; then
+    echo $restart
+fi
+

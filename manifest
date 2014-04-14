@@ -1,0 +1,6 @@
+__key_value PermitRootLogin \
+    --file /etc/ssh/sshd_config \
+    --value "without-password" \
+    --delimiter " " \
+    --state present
+
