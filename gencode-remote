@@ -3,7 +3,7 @@
 os="$(cat "$__global/explorer/os")"
 
 case "$os" in
-    centos|redhat)
+    centos|redhat|suse)
         restart="/etc/init.d/sshd restart"
     ;;
     debian|ubuntu)
@@ -16,7 +16,8 @@ If you would like to have this type running on $os,
 you can either develop the changes and send a pull
 request or ask for a quote at www.ungleich.ch
 eof
-
+        exit 1
+    ;;
 esac
 
 if grep -q "^__key_value/PermitRootLogin" "$__messages_in"; then
