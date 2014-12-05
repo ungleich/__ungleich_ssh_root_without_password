@@ -6,8 +6,11 @@ case "$os" in
     centos|redhat|suse)
         restart="/etc/init.d/sshd restart"
     ;;
-    debian|ubuntu)
+    debian)
         restart="/etc/init.d/ssh restart"
+    ;;
+    ubuntu)
+        restart="restart ssh"
     ;;
     *)
         cat << eof >&2
@@ -23,4 +26,3 @@ esac
 if grep -q "^__key_value/PermitRootLogin" "$__messages_in"; then
     echo $restart
 fi
-
