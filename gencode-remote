@@ -3,6 +3,9 @@
 os="$(cat "$__global/explorer/os")"
 
 case "$os" in
+    archlinux)
+        restart="systemctl restart sshd"
+    ;;
     centos|redhat|suse)
         restart="/etc/init.d/sshd restart"
     ;;
