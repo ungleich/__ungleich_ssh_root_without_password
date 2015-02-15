@@ -9,10 +9,10 @@ case "$os" in
     ;;
     centos|redhat)
         case "$os_version" in
-            CentOS Linux release 6*)
+            "CentOS Linux release 6"*)
                 restart="/etc/init.d/sshd restart"
             ;;
-            CentOS Linux release 7*)
+            "CentOS Linux release 7"*)
                 restart="systemctl restart sshd"
             ;;
             *)
