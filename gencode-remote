@@ -1,12 +1,30 @@
 # Restart sshd if its config is changed
 
 os="$(cat "$__global/explorer/os")"
+os_version="$(cat "$__global/explorer/os_version")"
+
+echo $os_version >&2
+exit 1
 
 case "$os" in
     archlinux)
         restart="systemctl restart sshd"
     ;;
-    centos|redhat|suse)
+    centos|redhat)
+        case "$os_version" in
+            CentOS Linux release 6*)
+                restart="/etc/init.d/sshd restart"
+            ;;
+            CentOS Linux release 7*)
+                restart="systemctl restart sshd"
+            ;;
+            *)
+                echo "Unsupported os/version: $os / $os_version" >&2
+                exit 1
+            ;;
+        esac
+    ;;
+    suse)
         restart="/etc/init.d/sshd restart"
     ;;
     debian)
