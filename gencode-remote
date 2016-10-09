@@ -35,6 +35,7 @@ case "$os" in
         *)
             restart="systemctl restart sshd"
         ;;
+        esac
     ;;
     *)
         cat << eof >&2
