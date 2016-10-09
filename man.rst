@@ -1,11 +1,8 @@
 cdist-type__ungleich_ssh_root_without_password(7)
 =================================================
+Ensure root login is not possible using password
+
 ungleich GmbH <cdist--@--ungleich.ch>
-
-
-NAME
-----
-cdist-type__ungleich_ssh_root_without_password - Ensure root login is not possible using password
 
 
 DESCRIPTION
@@ -13,17 +10,18 @@ DESCRIPTION
 This cdist type ensures that ssh does only allow root login via
 public key.
 
+
 EXAMPLES
 --------
 
---------------------------------------------------------------------------------
-__ungleich_ssh_root_without_password
---------------------------------------------------------------------------------
+.. code-block:: sh
+
+    __ungleich_ssh_root_without_password
 
 
 SEE ALSO
 --------
-- cdist-type(7)
+- `cdist-type(7) <cdist-type.html>`_
 
 
 COPYING
