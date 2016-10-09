@@ -28,7 +28,13 @@ case "$os" in
         restart="/etc/init.d/ssh restart"
     ;;
     ubuntu)
-        restart="restart ssh"
+        case "$os_version" in
+        14.04)
+            restart="restart ssh"
+        ;;
+        *)
+            restart="systemctl restart sshd"
+        ;;
     ;;
     *)
         cat << eof >&2
