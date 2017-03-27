@@ -24,7 +24,7 @@ case "$os" in
     suse)
         restart="/etc/init.d/sshd restart"
     ;;
-    debian)
+    debian|devuan)
         restart="/etc/init.d/ssh restart"
     ;;
     ubuntu)
