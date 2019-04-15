@@ -4,41 +4,42 @@ os="$(cat "$__global/explorer/os")"
 os_version="$(cat "$__global/explorer/os_version")"
 
 case "$os" in
-     alpine)
+    alpine)
         restart="/etc/init.d/sshd restart"
+        ;;
     archlinux)
         restart="systemctl restart sshd"
-    ;;
+        ;;
     centos|redhat)
         case "$os_version" in
             "CentOS Linux release 6"*)
                 restart="/etc/init.d/sshd restart"
-            ;;
+                ;;
             "CentOS Linux release 7"*)
                 restart="systemctl restart sshd"
-            ;;
+                ;;
             *)
                 echo "Unsupported os/version: $os / $os_version" >&2
                 exit 1
-            ;;
+                ;;
         esac
-    ;;
+        ;;
     suse)
         restart="/etc/init.d/sshd restart"
-    ;;
+        ;;
     debian|devuan)
         restart="/etc/init.d/ssh restart"
-    ;;
+        ;;
     ubuntu)
         case "$os_version" in
         14.04)
             restart="restart ssh"
-        ;;
+            ;;
         *)
             restart="systemctl restart sshd"
-        ;;
+            ;;
         esac
-    ;;
+        ;;
     *)
         cat << eof >&2
 Unsupported os $os.
@@ -47,7 +48,7 @@ you can either develop the changes and send a pull
 request or ask for a quote at www.ungleich.ch
 eof
         exit 1
-    ;;
+        ;;
 esac
 
 if grep -q "^__key_value/PermitRootLogin" "$__messages_in"; then
